@@ -1,0 +1,50 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home Page</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Home</h1>
+			{{#if authorised}}
+				<a href="/logout">Log out</a>
+			{{else}}
+				<a href="/login">Log in</a>
+			{{/if}}
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+	<main>
+		<p>This is the home page. Users can see it without logging in.</p>
+		{{#if authorised}}
+			<p><a href="/secure">secure page</a></p>
+		{{/if}}
+        
+         <table>
+            <tr><th>Picture</th><th>BookName</th><th>Author</th><th>Price(GBP)</th><th>Button</th></tr>
+            {{#each records}}
+                <tr>
+                    <td><img src="https://books.google.com/books/content/images/frontcover/{{this.book_id}}"></td>
+                    <td>{{this.book_name}}</td>
+                    <td>{{this.author_name}}</td>
+                    <td>{{this.book_price}}</td>
+                    <th><button class="addCart" type="button" onclick="alert('Please Login at first!')">Add To Basket</button></th>
+                    <!--
+                    <td><a href="https://play.google.com/store/books/details?id={{this.book_id}}">infoPage</a></td>
+                    -->
+                </tr>
+            {{/each}}
+            </table>
+	</main>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Payment Page</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+		<h1>Payment Page</h1>
+		<a href="/logout">Log out</a>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+        <div align="center">
+            <p>Payment Information</p>
+            </div>
+        
+            <script>
+              var shippingCost=0;
+              var weight=0;//
+              var ttotal=0;
+              var baseCost=0;
+              var vat=0;
+              
+            </script>
+
+            <table>
+            
+            <script>
+                ttotal+=parseFloat({{this.price}})*parseInt({{this.quantity}});    
+                weight=(parseInt({{this.quantity}}*350)/100;
+                shippingCost=weight*2;
+                baseCost=ttotal*0.2;
+                vat=ttotal-baseCost;
+                        
+            </script>
+                
+            <tr>
+                <td>order number</td>
+                <td>{{this.id}}</td>
+            </tr>            
+            <tr>
+                <td>user name</td>
+                <td>{{this.user}}</td>
+            </tr>
+            <tr>
+                <td>Total number of products</td>
+                <td>{{this.quantity}}</td>
+            </tr> 
+            <tr>
+                <td>Commodity cost</td>
+                <td>{{this.baseCost}}</td>
+            </tr>             
+            <tr>
+                <td>VAT</td>
+                <td>{{this.vat}}</td>
+            </tr>               
+            <tr>
+                <td>transportation cost</td>
+                <td>{{this.shippingCost}}</td>
+            </tr>            
+            <tr>
+                <td>total cost</td>
+                <td{{this.ttotal}}></td>
+            </tr>                                             
+            
+            </table>
+            <div align="left">
+                <p class="addCart" ><a href="/secure">back to book list </a></p>
+            </div>
+            <div align="left">
+                <button class="addCart" >
+                    <a href="/logout">Log out</a>
+                </button>                
+                
+            </div>
+
+            
+            
+		</main>
+	</body>
+</html>

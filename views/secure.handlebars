@@ -1,0 +1,44 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home Page</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+		<h1>Secure Page</h1>
+		<a href="/logout">Log out</a>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+		<p>welcome</p>
+		<p><a href="/">Home page</a></p>
+            
+            <table>
+            <tr><th>Picture</th><th>BookName</th><th>Author</th><th>Price(GBP)</th><th>InfoPage</th></tr>
+            {{#each records}}
+                <tr>
+                    <td><a href='/findbook?id={{this.book_id}}'><img src="https://books.google.com/books/content/images/frontcover/{{this.book_id}}"></a></td>
+                    <td><a href='/findbook?id={{this.book_id}}'>{{this.book_name}}</a></td>
+                    <td>{{this.author_name}}</td>
+                    <td>{{this.book_price}}</td>
+<!--                     <td><a href="secure/addToCard?book_id={{this.book_id}}&price={{this.book_price}}">Add To Card</a></td> -->
+                    
+                    <td ><a href="secure/addToCard?book_id={{this.book_id}}&price={{this.book_price}}" class="button">Add To Basket</a>
+                    </td>
+                </tr>
+            {{/each}}
+            </table>
+		</main>
+	</body>
+</html>

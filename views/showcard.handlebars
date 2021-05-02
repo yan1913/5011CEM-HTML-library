@@ -1,0 +1,62 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Basket Page</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+		<h1>Basket details</h1>
+		<a href="/logout">Log out</a>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+		
+		<p><a href="/secure">Back to Home page</a></p>
+        <div aside="center">
+            <p><center>Book details</center></p>
+        </div>
+        
+            <script>
+              var ttotal=0;
+            </script>
+            <table>
+            <tr><th>Picture</th><th>user</th><th>Price</th><th>quantity</th><th>money</th><th>Time</th><th>action</th></tr>
+            {{#each records}}
+                <tr>
+               <script>
+                    ttotal+=parseFloat({{this.price}})*parseInt({{this.quantity}});
+               </script>
+                    <td><a href='/findbook?id={{this.book_id}}'><img src="https://books.google.com/books/content/images/frontcover/{{this.book_id}}"></a></td>
+                    <td>{{this.user}}</td>
+                    <td>{{this.price}}</td> 
+                    <td>{{this.quantity}}</td>
+                    <td><script>document.write(Math.round(100*{{this.price}}*{{this.quantity}})/100)</script></td>
+                    <td>{{this.add_time}}</td>
+                    <td><a onclick='return confirm("real want to delete this item?")' href='delcard?id={{this.id}}'>Delete</a></td>
+                </tr>
+               
+            {{/each}}
+            </table>
+            <p id='total'>
+              <span>
+                <script>document.write(Math.round(ttotal*100)/100)</script>
+                </span>
+            </p>
+            <a href="https://gilbert-asia-8080.codio-box.uk/secure/payment">
+                 <button>Cheakout</button>
+            </a>
+           
+		</main>
+	</body>
+</html>

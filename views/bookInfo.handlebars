@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Book Information</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+		<h1>book information Page</h1>
+		 
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+		<p>This is book information </p>
+		<p><a href="/">Home page</a></p>
+             {{#each records}}
+            <table border="1" cellspacing="0" cellmargin="0"   width="90%" align="left">  
+                <tr ><td>book id</td><td><img src="https://books.google.com/books/content/images/frontcover/{{this.book_id}}" align="left"></td></tr>
+                <tr><td>author_name</td><td><p align="left">{{this.author_name}}</p></td></tr>
+                <tr><td>publication_time</td><td><p align="left">{{this.publication_time}}</p></td></tr>
+                <tr><td>URL</td><td><p align="left">{{this.URL}}</p></td></tr>
+                <tr><td>book_price</td><td><p align="left">{{this.book_price}}</p></td></tr>
+                <tr><td>detailed</td><td><p align="left">{{this.detailed}}</p></td></tr>
+                <tr><td>publisher</td><td><p align="left">{{this.publisher}}</p></td></tr> 
+          
+            </table>
+            
+             <button class="addCart" onclick='location="secure/addToCard?book_id={{this.book_id}}&price={{this.price}}"'>Add to Basket </button>
+            
+        
+            
+
+          {{/each}}
+
+		</main>
+	</body>
+</html>
